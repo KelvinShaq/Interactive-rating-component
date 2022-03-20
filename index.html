@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <script src="./assets/rating.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@700&display=swap" rel="stylesheet">
+  
+  <title>Frontend Mentor | Interactive rating component</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+   :root{
+     --color-primary: #fb7413;
+     --color-white:white;
+     --color-dark-blue:#252d37;
+     --color-very-dark-blue:#121417;
+     --color-medium-grey:#747879;
+     --shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+   }
+     *,*::after,*::before{
+       margin: 0;
+       padding: 0;
+       box-sizing: border-box;
+     }
+     body{
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       flex-direction: column;
+       height: 100vh;
+       font-family: 'overpass', sans-serif;
+       background-color: var(--color-very-dark-blue);
+     }
+     .rating-card{
+       width: 400px;
+       height: auto;
+       background: linear-gradient(
+         to bottom,
+         rgb(37, 45, 55, 0.6),
+         rgb(37, 45, 55, 0.4)
+         );
+         border-radius: 25px;
+         padding: 20px 25px;
+         box-shadow: var(--shadow);
+     }
+     .rating-card_content .star{
+       background-color: var(--color-dark-blue);
+       padding: 10px;
+       border-radius: 100%;
+       margin-bottom: 20px;
+     }
+     .rating-card_title,
+     .thank-you__title{
+       font-size: 30px;
+       color: var(--color-white);
+       font-weight: 700;
+       margin-bottom: 15px;
+     }
+     .rating-card_description,
+     .thank-you__description{
+       font-size: 15px;
+       font-weight: 400;
+       color: var(--color-medium-grey);
+       line-height: 1.6;
+       margin-bottom: 15px;
+     }
+     .form{
+       width: 100%;
+     }
+     .form div{
+       display: flex;
+       align-items: center;
+       justify-content: space-between;
+       margin-bottom: 10px;
+     }
+     .form__radio-input{
+       display: none;
+     }
+     .form__radio-label{
+       display: block;
+       cursor: pointer;
+       margin-right: 55px;
+       margin-bottom: 50px;
+     }
+     .form__radio-button{
+       height: 50px;
+       width: 50px;
+       background-color: var(--color-dark-blue);
+       border-radius: 100%;
+       position: absolute;
+       transition: background-color 0.25s;
+     }
+     .form__radio-button::after{
+       content: '';
+       height: 100%;
+       width: 100%;
+       border-radius: 100%;
+       position: absolute;
+       top: 0;
+       left: 0;
+       background-color: var(--color-medium-grey);
+       opacity: 0;
+       transition: opacity 0.2s;
+     }
+     .form__radio-button div{
+       position: absolute;
+       top: 50%;
+       left: 50%;
+       transform: translate(-50%, -50%);
+       font-size: 18px;
+       color: var(--color-white);
+       font-weight: 400;
+     }
+     .form__radio-button:hover{
+       background-color: #fb7413;
+     }
+     .form__radio-input:checked ~ .form__radio-label .form__radio-button::after{
+       opacity: 1;
+     }
+.form__button{
+  width: 100%;
+  padding: 12px 20px; 
+  border-radius: 20px;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  transition: background-color 0.2s color 0.2s;
+}
+.form__button:hover{
+  color: var(--color-primary);
+  background-color: var(--color-white);
+}
+.thank-you{
+  text-align: center;
+}
+.thank-you .thank-you-img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+  .thank-you .result{
+    display: inline-block;
+    background-color: var(--color-dark-blue);
+    padding: 5px 15px;
+    border-radius: 20px;
+    color: var(--color-primary);
+    margin-bottom: 20px;
+    font-weight: 400;
+    margin-bottom: 20px;
+  }
+  </style>
+</head>
+<body>
+ <div class="rating-card">
+ <div class="rating-card_content"> 
+     <img src="./assets/icon-star.svg" alt="rating star" class="star">
+     <h1 class="rating-card_title">How did we do?</h1>
+     <p class="rating-card_description">Please let us know how we did with your support request. All feedback is appreciated to help us improve our offering!</p>
+     <form class="form">
+       <div>
+       <div class="form__radio-group">
+         <input type="radio" id="rate-1" class="form__radio-input" name="rate-value" value="1"/>
+         <label for="rate-1" class="form__radio-label">
+           <span class="form__radio-button">
+             <div>1</div>
+           </span>
+         </label>
+       </div>
+       <div class="form__radio-group">
+        <input type="radio" id="rate-2" class="form__radio-input" name="rate-value" value="2"/>
+        <label for="rate-2" class="form__radio-label">
+          <span class="form__radio-button">
+            <div>2</div>
+          </span>
+        </label>
+      </div>
+      <div class="form__radio-group">
+        <input type="radio" id="rate-3" class="form__radio-input" name="rate-value" value="3"/>
+        <label for="rate-3" class="form__radio-label">
+          <span class="form__radio-button">
+            <div>3</div>
+          </span>
+        </label>
+      </div>
+      <div class="form__radio-group">
+        <input type="radio" id="rate-4" class="form__radio-input" name="rate-value" value="4"/>
+        <label for="rate-4" class="form__radio-label">
+          <span class="form__radio-button">
+            <div>4</div>
+          </span>
+        </label>
+      </div>
+      <div class="form__radio-group">
+        <input type="radio" id="rate-5" class="form__radio-input" name="rate-value" value="5"/>
+        <label for="rate-5" class="form__radio-label">
+          <span class="form__radio-button">
+            <div>5</div>
+          </span>
+        </label>
+      </div>
+      </div>
+      <button class="form__button" type="submit">submit</button>
+     </form>
+   </div>
+    <!-- <div class="thank-you">
+      <img src="./assets/illustration-thank-you.svg" alt="thank-you" class="thank-you-img"/>
+      <p class="result">You selected 4 out of 5</p>
+      <h1 class="thank-you__title">Thank You!</h1>
+      <p class="thank-you__description">We appreciate you taking the time to give a rating. If you ever need more support, don't hesitate to get in touch</p>
+    </div> -->
+  </div>
+</body>
+</html>
